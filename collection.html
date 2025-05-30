@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEGANCE COUTURE | Haute Couture Fashion House</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==== CUSTOM THEME COLORS ==== */
+        :root {
+            --primary: #1a1a2e;       /* Navy */
+            --secondary: #16213e;     /* Dark Navy */
+            --accent: #e94560;        /* Pink */
+            --gold: #f9c74f;         /* Yellow */
+            --light: #f8f9fa;        /* Light */
+            --dark: #0f0f1a;         /* Black */
+            --text: #333;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ==== GLOBAL STYLES ==== */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* ==== SPECIAL ANIMATIONS ==== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        @keyframes colorPulse {
+            0% { background-color: var(--primary); }
+            50% { background-color: var(--accent); }
+            100% { background-color: var(--primary); }
+        }
+
+        .sparkle {
+            position: absolute;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 2s infinite;
+        }
+
+        /* ==== HEADER & NAVIGATION ==== */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(22, 22, 42, 0.98) !important;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .logo span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .logo:hover span::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-link {
+            color: var(--light) !important;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 1rem !important;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .nav-link:hover::before {
+            transform: translateX(0);
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .navbar-toggler:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* ==== HERO SECTION ==== */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+            opacity: 0.05;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.2s forwards;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(249, 199, 79, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        /* ==== BUTTON STYLES ==== */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: 600;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--light);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .btn:hover {
+            color: var(--dark);
+            box-shadow: 0 10px 30px rgba(249, 199, 79, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        /* ==== SECTION TITLES ==== */
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ==== COLLECTIONS SECTION ==== */
+        .collections {
+            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collection-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .season-filter {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.8rem;
+            background: transparent;
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: var(--light);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .sort-by select {
+            padding: 0.7rem 1.8rem;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231a1a2e' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+            appearance: none;
+            padding-right: 3rem;
+        }
+
+        .collection-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-style: preserve-3d;
+            margin-bottom: 2rem;
+        }
+
+        .collection-item:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .collection-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .collection-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .collection-item:hover .collection-img {
+            transform: scale(1.08) rotateZ(0.5deg);
+        }
+
+        .collection-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .collection-badge.new {
+            background: var(--accent);
+        }
+
+        .collection-badge.popular {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .collection-item:hover .quick-view {
+            bottom: 0;
+        }
+
+        .color-options {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 2;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .collection-item:hover .color-options {
+            opacity: 1;
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .color-dot:hover {
+            transform: scale(1.3);
+        }
+
+        .collection-details {
+            padding: 1.8rem;
+            position: relative;
+        }
+
+        .collection-name {
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .collection-item:hover .collection-name {
+            color: var(--accent);
+        }
+
+        .collection-description {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            min-height: 3.5rem;
+        }
+
+        .collection-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .collection-season {
+            color: #888;
+            font-style: italic;
+        }
+
+        .collection-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .collection-actions {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .collection-item:hover .collection-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn:hover {
+            background: var(--primary);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+
+        .collection-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        /* ==== SPECIAL EFFECTS ==== */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hover-3d {
+            transition: transform 0.5s ease;
+        }
+
+        .hover-3d:hover {
+            transform: perspective(1000px) rotateY(10deg) rotateX(5deg) scale(1.05);
+        }
+
+        .glow-on-hover {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-on-hover:hover {
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.6);
+        }
+
+        .text-gradient {
+            background: linear-gradient(45deg, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ==== RESPONSIVE ADJUSTMENTS ==== */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .collection-controls {
+                flex-direction: column;
+            }
+            
+            .season-filter {
+                justify-content: center;
+            }
+            
+            .collection-img-container {
+                height: 300px;
+            }
+            
+            .navbar-collapse {
+                background: rgba(26, 26, 46, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                margin-top: 0.5rem;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .collection-item {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==== HEADER ==== -->
+    <header id="header">
+        <nav class="navbar navbar-expand-lg py-3">
+            <div class="container">
+                <a href="#" class="navbar-brand logo">ELEGANCE<span>COUTURE</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="collection.html">Collections</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==== HERO SECTION ==== -->
+    <section class="hero" id="home">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="text-gradient animate__animated animate__fadeInDown">Designer Collections</h1>
+                <p class="animate__animated animate__fadeIn animate__delay-1s">Explore our curated seasonal selections</p>
+                <a href="#collections" class="btn btn-outline-light mt-3 animate__animated animate__fadeInUp animate__delay-2s">Discover Now</a>
+            </div>
+        </div>
+        
+        <!-- Floating elements for visual interest -->
+        <div class="position-absolute top-20 start-10 floating-element" style="width: 100px; height: 100px; background: rgba(233, 69, 96, 0.2); border-radius: 50%; filter: blur(30px);"></div>
+        <div class="position-absolute bottom-10 end-20 floating-element" style="width: 150px; height: 150px; background: rgba(249, 199, 79, 0.2); border-radius: 50%; filter: blur(40px); animation-delay: 2s;"></div>
+    </section>
+
+    <!-- ==== COLLECTIONS SECTION ==== -->
+    <section class="collections" id="collections">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Collections</h2>
+                <p class="section-subtitle">Explore our curated seasonal selections</p>
+            </div>
+            
+            <div class="collection-controls">
+                <div class="season-filter">
+                    <button class="filter-btn active" data-season="all">All Collections</button>
+                    <button class="filter-btn" data-season="spring">Spring/Summer</button>
+                    <button class="filter-btn" data-season="fall">Fall/Winter</button>
+                    <button class="filter-btn" data-season="bridal">Bridal</button>
+                    <button class="filter-btn" data-season="couture">Haute Couture</button>
+                </div>
+                <div class="sort-by">
+                    <select id="sort-collections" class="form-select">
+                        <option value="newest">Newest First</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Collection Item 1 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="spring" data-price="1850" data-new="true">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Silk Floral Dress" class="collection-img">
+                            <div class="collection-badge new">New</div>
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #e8c4c4"></span>
+                                <span class="color-dot" style="background-color: #f3e5d8"></span>
+                                <span class="color-dot" style="background-color: #a68b8b"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Botanical Elegance</h3>
+                            <p class="collection-description">Silk floral evening dress with hand-embroidered details</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">SS23 Collection</span>
+                                <span class="collection-price">$1,850</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Item 2 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="fall" data-price="2450" data-popular="true">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wool Coat" class="collection-img">
+                            <div class="collection-badge popular">Popular</div>
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #3a3a3a"></span>
+                                <span class="color-dot" style="background-color: #5f5f5f"></span>
+                                <span class="color-dot" style="background-color: #8b0000"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Urban Frost</h3>
+                            <p class="collection-description">Cashmere-blend tailored coat with leather accents</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">FW23 Collection</span>
+                                <span class="collection-price">$2,450</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Item 3 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="bridal" data-price="3200">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridal Gown" class="collection-img">
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #fffaf0"></span>
+                                <span class="color-dot" style="background-color: #f5f5f5"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Eternal Bloom</h3>
+                            <p class="collection-description">Customizable bridal gown with French lace overlay</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">Bridal 2024</span>
+                                <span class="collection-price">$3,200</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Item 4 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="spring" data-price="1750">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Linen Suit" class="collection-img">
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #556b2f"></span>
+                                <span class="color-dot" style="background-color: #6b8e23"></span>
+                                <span class="color-dot" style="background-color: #808000"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Coastal Breeze</h3>
+                            <p class="collection-description">Italian linen tailored suit with mother-of-pearl buttons</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">SS23 Collection</span>
+                                <span class="collection-price">$1,750</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Item 5 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="couture" data-price="5800" data-popular="true">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evening Gown" class="collection-img">
+                            <div class="collection-badge popular">Popular</div>
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #4b0082"></span>
+                                <span class="color-dot" style="background-color: #000000"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Midnight Sonata</h3>
+                            <p class="collection-description">Hand-beaded couture gown with silk tulle</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">Haute Couture</span>
+                                <span class="collection-price">$5,800</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Item 6 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="fall" data-price="1950">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Leather Jacket" class="collection-img">
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #000000"></span>
+                                <span class="color-dot" style="background-color: #654321"></span>
+                                <span class="color-dot" style="background-color: #c0c0c0"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Rogue Rider</h3>
+                            <p class="collection-description">Italian lambskin leather jacket with quilted lining</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">FW23 Collection</span>
+                                <span class="collection-price">$1,950</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Item 7 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="bridal" data-price="2850" data-new="true">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridal Dress" class="collection-img">
+                            <div class="collection-badge new">New</div>
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #fffaf0"></span>
+                                <span class="color-dot" style="background-color: #faf0e6"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Whispering Willow</h3>
+                            <p class="collection-description">A-line bridal dress with illusion neckline</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">Bridal 2024</span>
+                                <span class="collection-price">$2,850</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Item 8 -->
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-season="couture" data-price="4200">
+                    <div class="collection-item hover-3d">
+                        <div class="collection-img-container">
+                            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evening Dress" class="collection-img">
+                            <div class="quick-view">Quick View</div>
+                            <div class="color-options">
+                                <span class="color-dot" style="background-color: #800000"></span>
+                                <span class="color-dot" style="background-color: #000080"></span>
+                            </div>
+                        </div>
+                        <div class="collection-details">
+                            <h3 class="collection-name">Gilded Age</h3>
+                            <p class="collection-description">Metallic jacquard evening dress with corset bodice</p>
+                            <div class="collection-meta">
+                                <span class="collection-season">Haute Couture</span>
+                                <span class="collection-price">$4,200</span>
+                            </div>
+                            <div class="collection-actions">
+                                <button class="action-btn cart-btn"><i class="fas fa-shopping-bag"></i></button>
+                                <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                                <button class="action-btn zoom-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-footer">
+                <div class="view-all-container w-100 text-center">
+                    <button class="btn btn-outline">View Complete Collection</button>
+                </div>
+                <div class="collection-stats w-100 text-center">
+                    <span>Showing 8 of 32 designs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== SPARKLE EFFECT ==== -->
+    <div id="sparkle-container"></div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced Collection Filtering and Sorting
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const sortSelect = document.getElementById('sort-collections');
+            const collectionItems = document.querySelectorAll('.collection-item');
+            const collectionGrid = document.querySelector('.row');
+
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const season = this.dataset.season;
+                    
+                    // Filter collection items
+                    collectionItems.forEach(item => {
+                        if (season === 'all' || item.dataset.season === season) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Sort functionality
+            sortSelect.addEventListener('change', function() {
+                const sortValue = this.value;
+                const itemsArray = Array.from(collectionItems);
+                
+                itemsArray.sort((a, b) => {
+                    if (sortValue === 'price-high') {
+                        return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                    } else if (sortValue === 'price-low') {
+                        return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                    } else if (sortValue === 'popular') {
+                        const aPopular = a.dataset.popular === 'true';
+                        const bPopular = b.dataset.popular === 'true';
+                        return (bPopular - aPopular);
+                    } else { // newest first
+                        const aNew = a.dataset.new === 'true';
+                        const bNew = b.dataset.new === 'true';
+                        return (bNew - aNew);
+                    }
+                });
+
+                // Reappend sorted items
+                itemsArray.forEach(item => {
+                    collectionGrid.appendChild(item);
+                });
+            });
+
+            // Quick View Simulation
+            const quickViews = document.querySelectorAll('.quick-view');
+            quickViews.forEach(view => {
+                view.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const item = this.closest('.collection-item');
+                    const name = item.querySelector('.collection-name').textContent;
+                    // Create a modal for quick view in production
+                    alert(`Quick view for: ${name}\n(Would open a detailed modal in production)`);
+                });
+            });
+
+            // Action buttons functionality
+            document.querySelectorAll('.cart-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const item = this.closest('.collection-item');
+                    const name = item.querySelector('.collection-name').textContent;
+                    // Add to cart functionality
+                    alert(`Added to cart: ${name}`);
+                });
+            });
+
+            document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('fas');
+                    this.classList.toggle('far');
+                    const item = this.closest('.collection-item');
+                    const name = item.querySelector('.collection-name').textContent;
+                    const action = this.classList.contains('fas') ? 'Added to wishlist' : 'Removed from wishlist';
+                    console.log(`${action}: ${name}`);
+                });
+            });
+
+            document.querySelectorAll('.zoom-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const item = this.closest('.collection-item');
+                    const img = item.querySelector('.collection-img').src;
+                    // Create a zoom modal in production
+                    console.log(`Would open zoom viewer for: ${img}`);
+                });
+            });
+
+            // Sparkle effect
+            function createSparkle(e) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Random size between 5 and 15px
+                const size = Math.random() * 10 + 5;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                
+                // Position at mouse coordinates
+                sparkle.style.left = `${e.clientX - size/2}px`;
+                sparkle.style.top = `${e.clientY - size/2}px`;
+                
+                // Random animation duration
+                sparkle.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                
+                document.getElementById('sparkle-container').appendChild(sparkle);
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+
+            // Add sparkles on mouse move
+            document.addEventListener('mousemove', (e) => {
+                // Only create sparkles 20% of the time for performance
+                if (Math.random() < 0.2) {
+                    createSparkle(e);
+                }
+            });
+
+            // Add sparkles to collection items on hover
+            document.querySelectorAll('.collection-item').forEach(item => {
+                item.addEventListener('mouseenter', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => {
+                            createSparkle({
+                                clientX: rect.left + Math.random() * rect.width,
+                                clientY: rect.top + Math.random() * rect.height
+                            });
+                        }, i * 200);
+                    }
+                });
+            });
+
+            // Animate elements when they come into view
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.collection-item, .section-title, .section-subtitle');
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+            window.addEventListener('load', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
