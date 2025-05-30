@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scroll Pixel Parallax</title>
+  <link rel="stylesheet" href="index11.css">
+</head>
+<body>
+  <canvas id="background"></canvas>
+
+  <div class="content">
+    <h1>Scroll to See the Magic</h1>
+    <p>This background reacts as you scroll down.</p>
+    <div class="spacer"></div>
+  </div>
+
+  <script src="script.js">
+    const canvas = document.getElementById('background');
+const ctx = canvas.getContext('2d');
+let width, height;
+let particles = [];
+
+function resizeCanvas() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Create pixel particles
+for (let i = 0; i < 300; i++) {
+  particles.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: Math.random() * 2 + 1,
+    speed: Math.random() * 0.5 + 0.2,
+    color: `hsl(${Math.random() * 360}, 80%, 60%)`
+  });
+}
+
+function drawParticles(scrollOffset) {
+  ctx.clearRect(0, 0, width, height);
+  for (let p of particles) {
+    let y = p.y + scrollOffset * p.speed;
+    ctx.beginPath();
+    ctx.arc(p.x, y % height, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+  }
+}
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  drawParticles(scrollY);
+});
+
+// Initial draw
+drawParticles(0);
+
+  </script>
+</body>
+</html>
